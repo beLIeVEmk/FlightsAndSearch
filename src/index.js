@@ -1,6 +1,6 @@
 const express=require('express')
 require('dotenv').config()
-
+//const {CityRepository}=require('./repository/cityRepository')
 const serverConfig=require('./config/serverConfig')
 
 const setupServer = async ()=>{
@@ -8,8 +8,10 @@ const setupServer = async ()=>{
     const PORT=serverConfig.PORT
     
     app.use(express.json())
-    app.listen(PORT,()=>{
+    app.listen(PORT,async ()=>{
         console.log(`Server up at port ${serverConfig.PORT}`)
+        /*const cityRepo=new CityRepository();
+        await cityRepo.createCity("New Delhi");*/
     })
 }
 

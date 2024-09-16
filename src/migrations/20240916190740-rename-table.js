@@ -9,7 +9,8 @@ module.exports = {
      * Example:
      * await queryInterface.createTable('users', { id: Sequelize.INTEGER });
      */
-    await queryInterface.renameTable('CITies','CITIES');
+    await queryInterface.dropTable('Cities')
+    await queryInterface.renameTable('CITIES','Cities');
   },
 
   async down (queryInterface, Sequelize) {

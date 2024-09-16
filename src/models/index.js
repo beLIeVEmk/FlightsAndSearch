@@ -41,3 +41,5 @@ db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 
 module.exports = db;
+
+// This will have all the Models list in the db created
