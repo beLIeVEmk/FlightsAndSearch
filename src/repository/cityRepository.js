@@ -1,5 +1,6 @@
 const {City}=require('../models/index')
 
+// In repo only we need to put the CRUD operations
 class CityRepository{
 
     async createCity(name){

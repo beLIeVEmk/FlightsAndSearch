@@ -25,3 +25,5 @@ module.exports = (sequelize, DataTypes) => {
   });
   return City;
 };
+
+// this retured CIty will go to the index of models
