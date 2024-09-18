@@ -43,9 +43,14 @@ class CityService{
         }
     }
 
-    async getAllCities(){
+    async getAllCities(cityName){
         try{
-            const getAllCityResponse=await this.cityRepo.getAllCities();
+            let getAllCityResponse;
+            if(cityName){
+                getAllCityResponse=await this.cityRepo.getAllCities(cityName);
+            }else{
+                getAllCityResponse=await this.cityRepo.getAllCities();
+            }
             return getAllCityResponse;
         }catch(error){
             throw error;

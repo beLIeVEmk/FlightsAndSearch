@@ -1,5 +1,5 @@
 const { where } = require('sequelize');
-const {City}=require('../models/index')
+const {City, sequelize}=require('../models/index')
 
 // In repo only we need to put the CRUD operations
 class CityRepository{
@@ -49,10 +49,15 @@ class CityRepository{
         }
     }
 
-    async getAllCities(){
+    async getAllCities(cityName){
         try{
-            const response=await City.findAll();
-            return response;
+            
+            if(cityName){
+                // limiting to reduce render time
+                const [response,metaData]=await sequelize.query(`SELECT * FROM Cities WHERE name LIKE '%${cityName}%' LIMIT 5;`);
+                return response;
+            }
+            return await City.findAll();
         }catch(error){
             throw error;
         }

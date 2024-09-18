@@ -24,6 +24,7 @@ class CityController{
                 data:createCityResponse
            })
         }catch(error){
+            console.log(error);
             res.status(500).json({
                 statusCode:500,
                 message:"Create city Error",
@@ -47,6 +48,7 @@ class CityController{
                         data:{}
                 })
             }else{
+                
                 res.status(400).json({
                     statusCode:400,
                     message:"No city of such id exists",
@@ -54,6 +56,7 @@ class CityController{
                 })
             }
         }catch(error){
+            console.log(error)
             res.status(500).json({
                 statusCode:500,
                 message:"Delete city Error",
@@ -84,6 +87,7 @@ class CityController{
                 })
             }
         }catch(error){
+            console.log(error)
             res.status(500).json({
                 statusCode:500,
                 message:"Get city Error",
@@ -108,6 +112,7 @@ class CityController{
                 })
             }
         }catch(error){
+            console.log(error)
             res.status(500).json({
                 statusCode:500,
                 message:"update city Error",
@@ -118,7 +123,12 @@ class CityController{
 
     getAllCities=async(req,res)=>{
         try{
-            const citiesInfo=await this.cityService.getAllCities();
+            let citiesInfo;
+            if(req?.query){
+                citiesInfo=await this.cityService.getAllCities(req.query.cityName);
+            }else{
+                citiesInfo=await this.cityService.getAllCities();
+            }
             if(citiesInfo){
                 res.status(200).json({
                     statusCode:200,
@@ -133,6 +143,7 @@ class CityController{
                 })
             }
         }catch(error){
+            console.log(error)
             res.status(500).json({
                 statusCode:500,
                 message:"getAll city Error",
