@@ -9,4 +9,5 @@ router.post('/createCity',cityController.createCity);
 router.get('/getCity/:cityId',cityController.getCity);
 router.delete('/deleteCity/:cityId',cityController.deleteCity);
 router.patch('/updateCity',cityController.updateCity);
+router.get('/getAllCities',cityController.getAllCities);
 module.exports=router

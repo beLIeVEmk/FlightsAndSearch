@@ -115,6 +115,31 @@ class CityController{
             })
         }
     }
+
+    getAllCities=async(req,res)=>{
+        try{
+            const citiesInfo=await this.cityService.getAllCities();
+            if(citiesInfo){
+                res.status(200).json({
+                    statusCode:200,
+                    message:"success",
+                    data:citiesInfo
+                })
+            }else{
+                res.status(400).json({
+                    statusCode:400,
+                    message:"Inalid update query",
+                    data:{}
+                })
+            }
+        }catch(error){
+            res.status(500).json({
+                statusCode:500,
+                message:"getAll city Error",
+                data:{}
+            })
+        }
+    }
 }
 
 module.exports=CityController;
