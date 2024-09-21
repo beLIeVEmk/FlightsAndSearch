@@ -38,9 +38,9 @@ class AirplaneService{
         }
     }
 
-    async getAirplane(modelName){
+    async getAirplane(airplaneId){
         try{
-            return await this.airplaneRepo.getAirplane(modelName)
+            return await this.airplaneRepo.getAirplane(airplaneId)
         }catch(error){
             throw error
         }

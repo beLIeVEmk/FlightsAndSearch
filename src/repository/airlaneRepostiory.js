@@ -14,9 +14,9 @@ class AirplaneRepository{
         }
     }
 
-    async getAirplane(modelName){
+    async getAirplane(airplaneId){
         try{
-            const airplaneInfo=await Airplane.findOne({where:{modelName}});
+            const airplaneInfo=await Airplane.findOne({where:{id:airplaneId}},{raw:true});
             return airplaneInfo
         }catch(error){
             throw error;
