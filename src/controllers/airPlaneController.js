@@ -72,7 +72,7 @@ class AirplaneController{
      */
     getAirplane=async (req,res)=>{
         try{
-            const getAirplaneResponse=await this.airplaneService.getAirplane(req.params.modelName); 
+            const getAirplaneResponse=await this.airplaneService.getAirplane(req.params.airplaneId); 
             if(getAirplaneResponse){
                 res.status(201).json({
                     statusCode:200,
