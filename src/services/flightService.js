@@ -15,6 +15,18 @@ class FlightService{
             if(filterData.arrTime){
                 Object.assign(filter,{arrTime:{[Op.gte]:new Date(filterData.arrTime)}})
             }
+            if(filterData.flightId){
+                filter.flightNo=filterData.flightId
+            }
+            if(filterData.airplaneId){
+                filter.airplaneId=filterData.airplaneId
+            }
+            if(filterData.arrAirportId){
+                filter.arrAirportId=filterData.arrAirportId
+            }
+            if(filterData.deptAirportId){
+                filter.deptAirportId=filterData.deptAirportId
+            }
             if(filterData.deptTime){
                 Object.assign(filter,{deptTime:{[Op.lte]:new Date(filterData.deptTime)}})
             }
