@@ -3,7 +3,9 @@ require('dotenv').config()
 //const {CityRepository}=require('./repository/cityRepository')
 const apiRoutes=require('./routes/index')
 const serverConfig=require('./config/serverConfig')
-
+const {City,Airport}=require('./models/index')
+const { where } = require('sequelize')
+const { raw } = require('mysql2')
 const setupServer = async ()=>{
     const app=express();
     const PORT=serverConfig.PORT;
@@ -12,8 +14,7 @@ const setupServer = async ()=>{
     app.use('/api',apiRoutes);
     app.listen(PORT,async ()=>{
         console.log(`Server up at port ${serverConfig.PORT}`);
-        /*const cityRepo=new CityRepository();
-        await cityRepo.createCity("New Delhi");*/
+        
     })
 }
 
