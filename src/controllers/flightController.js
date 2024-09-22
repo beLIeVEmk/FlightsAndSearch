@@ -1,5 +1,7 @@
 const FlightService = require("../services/flightService");
-
+const helperFunctions=require('../utils/utils')
+const codes=require('../utils/errorCodes');
+const messages = require("../utils/messages");
 class FlightController{
     constructor(){
         this.flightService=new FlightService()
@@ -8,11 +10,7 @@ class FlightController{
     createFlight=(async (req,res)=>{
         try{
             const createflightResponse=await this.flightService.createFlight(req.body)
-            res.status(201).json({
-                 statusCode:201,
-                 message:"success",
-                 data:createflightResponse
-            })
+            helperFunctions.createResBody(codes.SuccessCode.CREATED,messages.Success,createflightResponse,res)
          }catch(error){
              console.log(error);
              res.status(500).json({
@@ -26,11 +24,7 @@ class FlightController{
     getFlight=(async(req,res)=>{
         try{
             const getFlightResponse=await this.flightService.getFlightData(req.params.flightId)
-            res.status(201).json({
-                 statusCode:201,
-                 message:"success",
-                 data:getFlightResponse
-            })
+            helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,getFlightResponse,res)
         }catch(error){
             console.log(error);
              res.status(500).json({
@@ -44,11 +38,7 @@ class FlightController{
     getFlightsWithFilter=(async (req,res)=>{
         try{
             const getFlightResponse=await this.flightService.findFlights(req.query)
-            res.status(201).json({
-                 statusCode:201,
-                 message:"success",
-                 data:getFlightResponse
-            })
+            helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,getFlightResponse,res)
         }catch(error){
             console.log(error);
              res.status(500).json({

@@ -1,5 +1,7 @@
 const {AirplaneService}=require('../services/services')
-
+const helperFunctions=require('../utils/utils')
+const codes=require('../utils/errorCodes');
+const messages = require('../utils/messages');
 /**
  * In below we are using arrow methods as once any callback called - router.use 
  * Context of 'this' is lost so cityService will give error
@@ -18,11 +20,7 @@ class AirplaneController{
     createAirplane = async (req,res)=>{
         try{
            const createAirplaneResponse=await this.airplaneService.createAirplane(req.body)
-           res.status(201).json({
-                statusCode:201,
-                message:"success",
-                data:createAirplaneResponse
-           })
+           helperFunctions.createResBody(codes.SuccessCode.CREATED,messages.Success,createAirplaneResponse,res) 
         }catch(error){
             console.log(error);
             res.status(500).json({
@@ -42,11 +40,7 @@ class AirplaneController{
         try{
             const deleteAirplaneResponse=await this.airplaneService.deleteAirplane(req.params.airplaneId); 
             if(deleteAirplaneResponse){
-                res.status(200).json({
-                    statusCode:200,
-                    message:"success",
-                    data:{}
-                })
+                helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,deleteAirplaneResponse,res)
             }else{
                 
                 res.status(400).json({
@@ -74,11 +68,7 @@ class AirplaneController{
         try{
             const getAirplaneResponse=await this.airplaneService.getAirplane(req.params.airplaneId); 
             if(getAirplaneResponse){
-                res.status(201).json({
-                    statusCode:200,
-                    message:"success",
-                    data:getAirplaneResponse
-                })
+                helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,getAirplaneResponse,res)
             }else{
                 res.status(400).json({
                     statusCode:400,
@@ -99,11 +89,7 @@ class AirplaneController{
         try{
             const updateAirplaneResponse=await this.airplaneService.updateAirplane(req.body); 
             if(updateAirplaneResponse){
-                res.status(200).json({
-                    statusCode:200,
-                    message:"success",
-                    data:{}
-                })
+                helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,updateAirplaneResponse,res) 
             }else{
                 res.status(400).json({
                     statusCode:400,
