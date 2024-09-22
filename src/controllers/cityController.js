@@ -1,5 +1,7 @@
 const {CityService}=require('../services/services')
-
+const helperFunctions=require('../utils/utils')
+const codes=require('../utils/errorCodes');
+const messages = require('../utils/messages');
 /**
  * In below we are using arrow methods as once any callback called - router.use 
  * Context of 'this' is lost so cityService will give error
@@ -18,11 +20,7 @@ class CityController{
     createCity = async (req,res)=>{
         try{
            const createCityResponse=await this.cityService.createCity(req.body); 
-           res.status(201).json({
-                statusCode:201,
-                message:"success",
-                data:createCityResponse
-           })
+           helperFunctions.createResBody(codes.SuccessCode.CREATED,messages.Success,createCityResponse,res)
         }catch(error){
             console.log(error);
             res.status(500).json({
@@ -42,11 +40,7 @@ class CityController{
         try{
             const deleteCityResponse=await this.cityService.deleteCity(req.params.cityId); 
             if(deleteCityResponse){
-                res.status(200).json({
-                        statusCode:200,
-                        message:"success",
-                        data:{}
-                })
+                helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,deleteCityResponse,res)
             }else{
                 
                 res.status(400).json({
@@ -74,11 +68,7 @@ class CityController{
         try{
             const getCityResponse=await this.cityService.getCity(req.params.cityId); 
             if(getCityResponse){
-                res.status(201).json({
-                    statusCode:200,
-                    message:"success",
-                    data:getCityResponse
-                })
+                helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,getCityResponse,res)
             }else{
                 res.status(400).json({
                     statusCode:400,
@@ -99,11 +89,7 @@ class CityController{
         try{
             const updateCityResponse=await this.cityService.updateCity(req.body); 
             if(updateCityResponse){
-                res.status(200).json({
-                    statusCode:200,
-                    message:"success",
-                    data:{}
-                })
+                helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,updateCityResponse,res)
             }else{
                 res.status(400).json({
                     statusCode:400,
@@ -130,11 +116,7 @@ class CityController{
                 citiesInfo=await this.cityService.getAllCities();
             }
             if(citiesInfo){
-                res.status(200).json({
-                    statusCode:200,
-                    message:"success",
-                    data:citiesInfo
-                })
+                helperFunctions.createResBody(codes.SuccessCode.OK,messages.Success,citiesInfo,res)
             }else{
                 res.status(400).json({
                     statusCode:400,
