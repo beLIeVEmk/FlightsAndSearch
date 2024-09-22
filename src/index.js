@@ -3,9 +3,7 @@ require('dotenv').config()
 //const {CityRepository}=require('./repository/cityRepository')
 const apiRoutes=require('./routes/index')
 const serverConfig=require('./config/serverConfig')
-const {City,Airport}=require('./models/index')
-const { where } = require('sequelize')
-const { raw } = require('mysql2')
+
 const setupServer = async ()=>{
     const app=express();
     const PORT=serverConfig.PORT;

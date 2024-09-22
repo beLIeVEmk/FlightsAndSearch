@@ -2,7 +2,7 @@ const helperFunctions=require('../utils/utils')
 const Ajv = require("ajv");
 const addFormats = require("ajv-formats");
 const { createAirportValidationSchema,updateAirplaneValidationSchema, updateAirportValidationSchema } = require('../validation/validations');
-
+const messages=require('../utils/messages')
 
 const createAirportValidation=(req,res,next)=>{
     const ajv = new Ajv({ useDefaults: true, allErrors: true });
